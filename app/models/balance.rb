@@ -1,6 +1,6 @@
 class Balance < ApplicationRecord
-  has_many :expenses
-  has_many :incomes
+  has_one :expense
+  has_one :income
 
   validates :value, presence: true,
                     numericality: { only_integer: true }
