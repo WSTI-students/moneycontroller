@@ -1,8 +1,4 @@
 class IncomesController < ApplicationController
-  def index
-    @income = Income.all
-  end
-
   def new
     @income = Income.new
   end
