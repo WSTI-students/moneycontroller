@@ -5,6 +5,7 @@ AllCops:
   Exclude:
     - db/**/*
     - config/**/*
+    - bin/**/*
 AlignParameters:
   Enabled: false
 Documentation:
