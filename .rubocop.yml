@@ -1,10 +1,9 @@
 AllCops:
-  Include:
-    - Rakefile
-    - config.ru
   Exclude:
+    - Gemfile*
     - db/**/*
     - config/**/*
+    - bin/*
 AlignParameters:
   Enabled: false
 Documentation:
@@ -23,17 +22,25 @@ MethodLength:
   Max: 15
 Naming/FileName:
   Enabled: false
-Style/AlignHash:
+Layout/AlignHash:
   Enabled: false
+Layout/DotPosition:
+  EnforcedStyle: leading
+Style/EmptyMethod:
+  Enabled: false
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
 Style/ClassAndModuleChildren:
   Enabled: false
-Style/DotPosition:
-  EnforcedStyle: leading
 Style/FrozenStringLiteralComment:
   Enabled: false
-Style/MultilineMethodCallIndentation:
-  EnforcedStyle: indented
 Style/StringLiterals:
   Enabled: false
 Style/StringLiteralsInInterpolation:
+  Enabled: false
+Style/SymbolArray:
+  Enabled: false
+Style/SymbolProc:
+  Enabled: false
+Style/WordArray:
   Enabled: false

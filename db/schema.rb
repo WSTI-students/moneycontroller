@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_07_121406) do
+ActiveRecord::Schema.define(version: 2019_07_11_182617) do
 
   create_table "balances", force: :cascade do |t|
-    t.integer "value"
+    t.integer "value", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
