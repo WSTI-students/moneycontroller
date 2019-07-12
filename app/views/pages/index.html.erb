@@ -1,18 +1,17 @@
 <h2> incomes </h2>
-
- <table>
- <tbody>
- <% @incomes.each do |income| %>
-  <tr>
-    <td><%= format_date(income.created_at)%></td>
-    <td><%= income.title %></td>
-    <td><%= income.value %></td>
-    <td><%= link_to 'Show', income %></td>
-    <td><%= link_to 'Edit', edit_income_path(income) %></td>
-    <td><%= link_to 'Delete', income, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</tbody>
+<table>
+  <tbody>
+    <% @incomes.each do |income| %>
+      <tr>
+        <td><%= format_date(income.created_at)%></td>
+        <td><%= income.title %></td>
+        <td><%= income.value %></td>
+        <td><%= link_to 'Show', income %></td>
+        <td><%= link_to 'Edit', edit_income_path(income) %></td>
+        <td><%= link_to 'Delete', income, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 <%= link_to 'Add income', new_income_path %>
 <hr>
