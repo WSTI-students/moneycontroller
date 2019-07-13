@@ -17,7 +17,26 @@
 <hr>
 
 <h2> your budget </h2>
+<%= pie_chart @current_budget %>
+<%= link_to 'Add budget', new_income_path %>
+<hr>
 
-<%= pie_chart Category.joins(:expenses).group('title').sum('expenses.value') %>
-
-<%= pie_chart @current_balance %>
+<h2> your expenses list </h2>
+<%= pie_chart @expenses_categories %>
+<table>
+  <tbody>
+  <% @expenses.each do |expense| %>
+    <tr>
+      <td><%= format_date(expense.created_at)%></td>
+      <td><%= expense.title %></td>
+      <td><%= expense.value %></td>
+      <td><%= expense.category.title %></td>
+      <td><%= link_to 'Show', expense %></td>
+      <td><%= link_to 'Edit', edit_expense_path(expense) %></td>
+      <td><%= link_to 'Delete', expense, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= link_to 'Add expense', new_expense_path %>
+<hr>
