@@ -4,6 +4,6 @@ Rails.application.routes.draw do
  #root to: 'pages#sign_in'
   root to: 'pages#index'
 
-  resources :expenses, only: [:show, :new, :edit, :destroy]
-  resources :incomes, only: [:show, :new, :edit, :destroy]
+  resources :expenses
+  resources :incomes
 end
