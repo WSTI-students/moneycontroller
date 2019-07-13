@@ -4,4 +4,11 @@ class Budget < ApplicationRecord
   validates :title, presence: true
   validates :value, presence: true,
                     numericality: { greater_than: 0 }
+  validate :budget_date_range
+
+  def budget_date_range
+    return if start_date < end_date
+
+    errors.add(:end_date, "must be greater than Start Date")
+  end
 end
