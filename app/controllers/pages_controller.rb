@@ -8,8 +8,8 @@ class PagesController < ApplicationController
   def index
     @incomes = Income.first(5)
     @expenses = Expense.first(5)
-    @expenses_categories = Category.joins(:expenses).group('title').sum('expenses.value')
-    current_expenses_value = Expense.sum(:value)
+    @expenses_categories = Category.joins(:expenses).group('title').sum('expenses.value_cents')
+    current_expenses_value = Expense.sum(:value_cents)
     current_budget_value = Budget.last.value_cents
     assets_left = current_budget_value - current_expenses_value
     @current_budget = { 'Assets left' => assets_left, 'Expenses' => current_expenses_value }
