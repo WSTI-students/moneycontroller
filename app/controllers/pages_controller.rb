@@ -7,9 +7,11 @@ class PagesController < ApplicationController
 
   def index
     @incomes = Income.all
-    current_balance_value = Balance.last.value
+    @expenses = Expense.all
+    @expenses_categories = Category.joins(:expenses).group('title').sum('expenses.value')
     current_expenses_value = Expense.sum(:value)
-    assets_left = current_balance_value - current_expenses_value
-    @current_balance = { 'Assets left' => assets_left, 'Expenses' => current_expenses_value }
+    current_budget_value = Budget.last.value
+    assets_left = current_budget_value - current_expenses_value
+    @current_budget = { 'Assets left' => assets_left, 'Expenses' => current_expenses_value }
   end
 end
