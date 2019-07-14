@@ -5,9 +5,11 @@ class PagesController < ApplicationController
 
   def home; end
 
-  def index
+  def index 
+    @budgets = current_user.budgets
+    # to  be handled later
     @incomes = Income.first(5)
-    @expenses = Expense.first(5)
+    @expenses = current_user.expenses.first(5)
     expenses_categories = Category.joins(:expenses).group('title').sum('expenses.value_cents')
     @expense_pie = expenses_categories.transform_values { |v| v / 100.to_f }
     current_expenses_value = Expense.sum(:value_cents)

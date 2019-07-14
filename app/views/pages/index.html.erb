@@ -18,6 +18,18 @@
 
 <h2> your budget </h2>
 <%= pie_chart @current_budget %>
+<table>
+  <tbody>
+  <% @budgets.each do |budget| %>
+    <tr>
+      <td><%= format_date(budget.start_date)%></td>
+      <td><%= format_date(budget.end_date)%></td>
+      <td><%= budget.title %></td>
+      <td><%= budget.value.format %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
 <%= link_to 'Add budget', new_budget_path %>
 <hr>
 
