@@ -1,9 +1,23 @@
-<div class="container">
-  <div class="row">
-      <%= image_tag('Welcome_in_the_money.jpg') %>
-      <div class="col-sm-5 offset-sm-5">
-        <%= link_to "SIGN IN", new_user_session_path, class: "btn btn-outline-dark btn-lg btn-#ad004e" %>
-        <%= link_to "SIGN UP", new_user_registration_path, class: "btn btn-outline-dark btn-lg" %>
-      </div>
-  </div>
-</div>
+<h2> incomes </h2>
+<table>
+  <tbody>
+    <% @incomes.each do |income| %>
+      <tr>
+        <td><%= format_date(income.created_at)%></td>
+        <td><%= income.title %></td>
+        <td><%= income.value %></td>
+        <td><%= link_to 'Show', income %></td>
+        <td><%= link_to 'Edit', edit_income_path(income) %></td>
+        <td><%= link_to 'Delete', income, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Add income', new_income_path %>
+<hr>
+
+<h2> your budget </h2>
+
+<%= pie_chart Category.joins(:expenses).group('title').sum('expenses.value') %>
+
+<%= pie_chart @current_balance %>
