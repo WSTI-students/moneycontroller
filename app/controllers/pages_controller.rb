@@ -1,9 +1,5 @@
 class PagesController < ApplicationController
-  before_action :authenticate_user!
-
-  def sign_in; end
-
-  def home; end
+  before_action :authenticate_user!, only: [:index]
 
   def index
     @incomes = Income.first(5)
@@ -15,7 +11,7 @@ class PagesController < ApplicationController
     @current_budget = { 'Assets left' => assets_left, 'Expenses' => current_expenses_value }
   end
 
-  def show; end
-
-  def edit; end
+  def welcome
+    redirect_to action: 'index' if user_signed_in?
+  end
 end

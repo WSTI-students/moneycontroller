@@ -1,9 +1,7 @@
-div.row{
-  position: relative;
+$magenta: #ad004e;
+.btn-magenta {
+  @include button-variant($magenta, darken($magenta, 7.5%), darken($magenta, 10%), lighten($magenta,5%), lighten($magenta, 10%), darken($magenta,30%));
 }
-div.buttons{
-  position: absolute;
-  top: 45%;
-  left: 40%;
-  color: red;
+.field{
+  padding-bottom: 15px;
 }
