@@ -34,7 +34,7 @@ class BudgetsController < ApplicationController
   private
 
   def set_budget
-  @budget = current_user.budgets.find(params[:id])
+    @budget = current_user.budgets.find(params[:id])
   end
 
   def budget_params
