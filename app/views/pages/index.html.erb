@@ -32,6 +32,7 @@
       <td><%= format_date(budget.end_date)%></td>
       <td><%= budget.title %></td>
       <td><%= budget.value.format %></td>
+      <td><%= link_to 'Edit', edit_budget_path(budget) %></td>
     </tr>
   <% end %>
   </tbody>
