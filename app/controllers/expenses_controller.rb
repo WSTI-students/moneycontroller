@@ -12,8 +12,8 @@ class ExpensesController < ApplicationController
   end
 
   def create
-    @expense = Expense.new(expense_params)
-    @expense.build_balance(value: 1)
+    budget = current_user.budgets.last
+    @expense = budget.expenses.new(expense_params)
 
     respond_to do |format|
       if @expense.save
@@ -50,6 +50,6 @@ class ExpensesController < ApplicationController
   end
 
   def expense_params
-    params.require(:expense).permit(:title, :value, :category_id)
+    params.require(:expense).permit(:title, :value, :category_id, :budget_id)
   end
 end
