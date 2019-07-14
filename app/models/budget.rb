@@ -1,5 +1,6 @@
 class Budget < ApplicationRecord
   belongs_to :user
+  has_many :expenses
 
   validates :title, presence: true
   validates :value_cents, presence: true,

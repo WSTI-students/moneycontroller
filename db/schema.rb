@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_13_120814) do
+ActiveRecord::Schema.define(version: 2019_07_14_065005) do
 
   create_table "balances", force: :cascade do |t|
     t.integer "value", default: 0, null: false
@@ -45,7 +45,9 @@ ActiveRecord::Schema.define(version: 2019_07_13_120814) do
     t.integer "balance_id"
     t.integer "value_cents", default: 0, null: false
     t.string "value_currency", default: "PLN", null: false
+    t.integer "budget_id"
     t.index ["balance_id"], name: "index_expenses_on_balance_id"
+    t.index ["budget_id"], name: "index_expenses_on_budget_id"
     t.index ["category_id"], name: "index_expenses_on_category_id"
   end
 

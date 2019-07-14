@@ -29,7 +29,7 @@
     <tr>
       <td><%= format_date(expense.created_at)%></td>
       <td><%= expense.title %></td>
-      <td><%= expense.value_cents %></td>
+      <td><%= expense.value.format %></td>
       <td><%= expense.category.title %></td>
       <td><%= link_to 'Show', expense %></td>
       <td><%= link_to 'Edit', edit_expense_path(expense) %></td>

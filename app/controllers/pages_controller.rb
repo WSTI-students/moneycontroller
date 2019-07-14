@@ -10,9 +10,10 @@ class PagesController < ApplicationController
     @expenses = Expense.first(5)
     @expenses_categories = Category.joins(:expenses).group('title').sum('expenses.value_cents')
     current_expenses_value = Expense.sum(:value_cents)
-    current_budget_value = Budget.last.value_cents
-    assets_left = current_budget_value - current_expenses_value
-    @current_budget = { 'Assets left' => assets_left, 'Expenses' => current_expenses_value }
+    current_budget_value = current_user.budgets.last.value_cents
+    assets_left = (current_budget_value - current_expenses_value) / 100.to_f
+    @current_budget = { 'Assets left' => assets_left,
+                        'Expenses' => current_expenses_value / 100.to_f }
   end
 
   def show; end
