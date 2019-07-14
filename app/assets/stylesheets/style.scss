@@ -2,6 +2,11 @@ $magenta: #ad004e;
 .btn-magenta {
   @include button-variant($magenta, darken($magenta, 7.5%), darken($magenta, 10%), lighten($magenta,5%), lighten($magenta, 10%), darken($magenta,30%));
 }
-.field{
+
+.field {
   padding-bottom: 15px;
+}
+
+i, em {
+  color: #6D6D6D;
 }
