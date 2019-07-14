@@ -20,11 +20,6 @@ ActiveRecord::Schema.define(version: 2019_07_14_081916) do
 
   create_table "budgets", force: :cascade do |t|
     t.string "title"
-<<<<<<< HEAD
-    t.integer "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-=======
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "start_date"
@@ -33,7 +28,6 @@ ActiveRecord::Schema.define(version: 2019_07_14_081916) do
     t.integer "value_cents", default: 0, null: false
     t.string "value_currency", default: "PLN", null: false
     t.index ["user_id"], name: "index_budgets_on_user_id"
->>>>>>> cd050701c1af6285f767a6e09bcf2c2c60430259
   end
 
   create_table "categories", force: :cascade do |t|
