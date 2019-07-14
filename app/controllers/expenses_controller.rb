@@ -4,7 +4,7 @@ class ExpensesController < ApplicationController
   def show; end
 
   def index
-    @expense = Expense.all
+    @expense = current_user.expenses.all
   end
 
   def new
@@ -12,8 +12,8 @@ class ExpensesController < ApplicationController
   end
 
   def create
-    @expense = Expense.new(expense_params)
-    @expense.build_balance(value: 1)
+    budget = current_user.budgets.last
+    @expense = budget.expenses.new(expense_params_with_user)
 
     respond_to do |format|
       if @expense.save
@@ -28,7 +28,7 @@ class ExpensesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @expense.update(expense_params)
+      if @expense.update(expense_params_with_user)
         format.html { redirect_to root_path, notice: 'Expense was successfully updated.' }
       else
         format.html { render :edit }
@@ -47,6 +47,10 @@ class ExpensesController < ApplicationController
 
   def set_expense
     @expense = Expense.find(params[:id])
+  end
+
+  def expense_params_with_user
+    expense_params.merge(user: current_user)
   end
 
   def expense_params
