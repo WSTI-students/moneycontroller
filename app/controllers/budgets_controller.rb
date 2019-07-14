@@ -1,4 +1,6 @@
 class BudgetsController < ApplicationController
+  before_action :set_budget, only: [:edit, :update]
+
   def index; end
 
   def new
@@ -19,7 +21,21 @@ class BudgetsController < ApplicationController
 
   def edit; end
 
+  def update
+    respond_to do |format|
+      if @budget.update(budget_params)
+        format.html { redirect_to root_path, notice: 'Budget was successfully updated.' }
+      else
+        format.html { render :edit }
+      end
+    end
+  end
+
   private
+
+  def set_budget
+    @budget = current_user.budgets.find(params[:id])
+  end
 
   def budget_params
     params.require(:budget).permit(:title, :value, :start_date, :end_date)
