@@ -21,10 +21,6 @@ class BudgetsController < ApplicationController
 
   private
 
-  def set_budget
-    @budget = Budget.find(params[:id])
-  end
-
   def budget_params
     params.require(:budget).permit(:title, :value, :start_date, :end_date)
   end
