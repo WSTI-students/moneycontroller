@@ -4,7 +4,7 @@ class ExpensesController < ApplicationController
   def show; end
 
   def index
-    @expense = Expense.all
+    @expense = current_user.expenses.all
   end
 
   def new
