@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_13_061217) do
+ActiveRecord::Schema.define(version: 2019_07_14_081916) do
 
   create_table "balances", force: :cascade do |t|
     t.integer "value", default: 0, null: false
@@ -20,9 +20,20 @@ ActiveRecord::Schema.define(version: 2019_07_13_061217) do
 
   create_table "budgets", force: :cascade do |t|
     t.string "title"
+<<<<<<< HEAD
     t.integer "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+=======
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer "user_id"
+    t.integer "value_cents", default: 0, null: false
+    t.string "value_currency", default: "PLN", null: false
+    t.index ["user_id"], name: "index_budgets_on_user_id"
+>>>>>>> cd050701c1af6285f767a6e09bcf2c2c60430259
   end
 
   create_table "categories", force: :cascade do |t|
@@ -34,13 +45,18 @@ ActiveRecord::Schema.define(version: 2019_07_13_061217) do
 
   create_table "expenses", force: :cascade do |t|
     t.string "title"
-    t.integer "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category_id"
     t.integer "balance_id"
+    t.integer "value_cents", default: 0, null: false
+    t.string "value_currency", default: "PLN", null: false
+    t.integer "budget_id"
+    t.integer "user_id"
     t.index ["balance_id"], name: "index_expenses_on_balance_id"
+    t.index ["budget_id"], name: "index_expenses_on_budget_id"
     t.index ["category_id"], name: "index_expenses_on_category_id"
+    t.index ["user_id"], name: "index_expenses_on_user_id"
   end
 
   create_table "incomes", force: :cascade do |t|

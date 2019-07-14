@@ -1,9 +1,61 @@
-<div class="container">
-  <div class="row">
-      <%= image_tag('Welcome_in_the_money.jpg') %>
-      <div class="col-sm-5 offset-sm-5">
-        <%= link_to "SIGN IN", new_user_session_path, class: "btn btn-outline-dark btn-lg btn-#ad004e" %>
-        <%= link_to "SIGN UP", new_user_registration_path, class: "btn btn-outline-dark btn-lg" %>
-      </div>
-  </div>
-</div>
+<h2> incomes </h2>
+<table>
+  <tbody>
+    <% @incomes.each do |income| %>
+      <tr>
+        <td><%= format_date(income.created_at)%></td>
+        <td><%= income.title %></td>
+        <td><%= income.value %></td>
+        <td><%= link_to 'Show', income %></td>
+        <td><%= link_to 'Edit', edit_income_path(income) %></td>
+        <td><%= link_to 'Delete', income, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Add income', new_income_path %>
+<hr>
+
+<h2> your budget </h2>
+<%= pie_chart @current_budget %>
+<table>
+  <tbody>
+  <tr>
+    <th> Start Date </th>
+    <th> End Date </th>
+    <th> Title </th>
+    <th> Amount </th>
+  </tr>
+  <% @budgets.each do |budget| %>
+    <tr>
+      <td><%= format_date(budget.start_date)%></td>
+      <td><%= format_date(budget.end_date)%></td>
+      <td><%= budget.title %></td>
+      <td><%= budget.value.format %></td>
+      <td><%= link_to 'Edit', edit_budget_path(budget) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= link_to 'Add budget', new_budget_path %>
+<hr>
+
+<h2> your expenses list </h2>
+<%= pie_chart @expense_pie %>
+<table>
+  <tbody>
+  <% @expenses.each do |expense| %>
+    <tr>
+      <td><%= format_date(expense.created_at)%></td>
+      <td><%= expense.title %></td>
+      <td><%= expense.value.format %></td>
+      <td><%= expense.category.title %></td>
+      <td><%= link_to 'Show', expense %></td>
+      <td><%= link_to 'Edit', edit_expense_path(expense) %></td>
+      <td><%= link_to 'Delete', expense, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= link_to 'Add expense', new_expense_path %>
+<hr>
