@@ -8,7 +8,7 @@ class ExpensesController < ApplicationController
   end
 
   def new
-    @expense = Expense.new
+    @expense = current_user.expenses.new
   end
 
   def create
@@ -46,7 +46,7 @@ class ExpensesController < ApplicationController
   private
 
   def set_expense
-    @expense = Expense.find(params[:id])
+    @expense = current_user.expenses.find(params[:id])
   end
 
   def expense_params_with_user
